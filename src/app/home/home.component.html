@@ -1,0 +1,26 @@
+<div class="container-home">
+    <div class="container-search">
+        <div class="title-container">
+            <h1 class="title-home">Spotify Podcasts</h1>
+            <h2 class="title-info-home">Search for a show to start</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9 wrapper-search-input">
+                <input type="text" [disabled]="loading" [(ngModel)]="search" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-success button-search" [disabled]="loading" (click)="doSearch()">SEARCH</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container-shows">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 wrapper-show-card" *ngFor="let show of shows">
+                <app-show-card [show]="show"></app-show-card>
+            </div>
+        </div>
+    </div>
+</div>

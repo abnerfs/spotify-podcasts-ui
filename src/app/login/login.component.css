@@ -1,0 +1,63 @@
+@media (min-width: 768px) {
+    .container-login{
+        width: 500px;
+    }
+
+    .page-credits-wrapper {
+        width: 500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .submit-spotify {
+        width: 300px;
+    }
+}
+
+@media (min-width: 768px) {
+    .submit-spotify {
+        width: 450px;
+    }
+}
+
+
+.container-login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    height: 300px;
+}
+
+.container-fluid {
+    background-color: #040404;
+    height: 100vh;
+}
+
+.submit-spotify {
+    height: 50px;
+    font-weight: bold;
+    border-radius: 100px;
+}
+
+
+.page-title {
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.page-credits-wrapper {
+    text-align: right;
+}
+
+.page-credits {
+    color: white;
+    font-size: 20px;
+    margin-top: -15px;
+    padding-right: 20px;
+}

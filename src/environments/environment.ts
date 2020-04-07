@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  SERVER_LINK: 'http://localhost:7788',
+  REDIRECT_URI: 'http://localhost:4200/callback'
 };
 
 /*
