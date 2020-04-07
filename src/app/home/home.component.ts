@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PodcastService, Show } from '../services/podcastservice';
-import UtilService from '../services/Util';
+import { PodcastService } from '../services/podcastservice';
+import { Show } from '../models/api_models';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  constructor(private podcastService: PodcastService, private util: UtilService) { }
+  constructor(private podcastService: PodcastService) { }
 
   ngOnInit(): void {
   }

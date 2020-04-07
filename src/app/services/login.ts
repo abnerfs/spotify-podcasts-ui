@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import UtilService from './Util';
-import { AccessToken } from '../login/access_token';
+import { AccessToken } from '../models/api_models';
 import { environment } from 'src/environments/environment';
+import UtilService from './Util';
 
 
 @Injectable({
@@ -10,6 +10,10 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
     constructor(private util: UtilService) {
 
+    }
+
+    logout() {
+        localStorage.removeItem('current_user');
     }
 
     getAuthHeader() {
@@ -69,7 +73,8 @@ export class LoginService {
                 expires_in: objUser.expires_in,
                 refresh_token: objUser.refresh_token,
                 scope: objUser.scope,
-                token_type: objUser.token_type
+                token_type: objUser.token_type,
+                user: objUser.user
             };
             return user;
         } 

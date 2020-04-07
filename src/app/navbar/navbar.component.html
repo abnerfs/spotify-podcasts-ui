@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" routerLink="">Spotify Podcasts</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" [ngClass]="isRoute('/home')">
+                <a class="nav-link" routeLink="home">Search</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="user-container">
+        <div class="img-user-wrapper">
+            <img [src]="user?.images[0]?.url || defaultImage" class="user-img">
+        </div>
+        <div class="display-wrapper">
+            <div class="btn-group">
+                <button type="button" class="display-name dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="display-name-text">{{user?.display_name}}</span>
+                </button>
+                <div class="dropdown-menu">
+                  <button class="dropdown-item" (click)="logout()">Logout</button>
+                </div>
+              </div>
+
+            <!-- <a class="display-name" href="#" role="button" id="dropdownUserButton" data-toggle="dropdownUser"
+                aria-haspopup="true" aria-expanded="false">
+                {{user?.display_name}}
+            </a> -->
+
+            
+        </div>
+
+    </div>
+</nav>

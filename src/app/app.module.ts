@@ -11,6 +11,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { HomeComponent } from './home/home.component';
 import AuthGuard from './services/authguard';
 import { ShowCardComponent } from './show-card/show-card.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 const appRoutes: Routes = [
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     LoginComponent,
     CallbackComponent,
     HomeComponent,
-    ShowCardComponent
+    ShowCardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

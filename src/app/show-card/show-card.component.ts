@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Show } from '../services/podcastservice';
+import { Show } from '../models/api_models';
 
 @Component({
   selector: 'app-show-card',
