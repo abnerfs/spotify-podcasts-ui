@@ -1,0 +1,54 @@
+<div class="container-show">
+    <app-navbar></app-navbar>
+    <div *ngIf="loading">
+        <h1 class="loading">Loading...</h1>
+    </div>
+
+    <div *ngIf="error">
+        <h1 class="error">Error, try again later...</h1>
+    </div>
+
+    <div class="row show-container" *ngIf="show && !error && !loading">
+        <div class="col-md-4 img-wrapper col-sm-6 col-xs-12">
+            <img class="img-show" [src]="show?.images[0]?.url" alt="">
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <h2 class="show-name">{{show.name}}</h2>
+            <p class="show-description">{{show.description}}</p>
+        </div>
+
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-9 input-search-wrapper">
+                    <input [(ngModel)]="search" type="text" class="form-control search-episode"
+                        placeholder="Search episodes...">
+                </div>
+                <div class="col-md-3 btn-search-wrapper">
+                    <button (click)="searchEpisodes()" class="btn btn-success btn-search">SEARCH</button>
+                </div>
+            </div>
+            <button (click)="spotifyDesktop()" class="btn btn-success btn-open-spotify">OPEN IN SPOTIFY DESKTOP</button>
+            <button (click)="spotifyApp()" class="btn btn-success btn-open-spotify">OPEN IN SPOTIFY WEB/APP</button>
+        </div>
+    </div>
+
+    <div class="container-episodes row" *ngIf="episodes?.length">
+        <div class="offset-md-2 col-md-8">
+            <table class="table table-responsive table-episodes">
+                <thead>
+                    <th class="episode-name">Name</th>
+                    <th class="episode-date">Date</th>
+                    <th class="episode-duration">Duration</th>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let episode of episodes">
+                        <td>{{episode.name}}</td>
+                        <td>{{episode.release_date}}</td>
+                        <td>{{episode.duration_ms}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

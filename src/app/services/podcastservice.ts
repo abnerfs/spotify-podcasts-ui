@@ -14,6 +14,17 @@ export class PodcastService {
 
     }
 
+    getShow(show: string) {
+        return fetch(environment.SERVER_LINK + '/shows/' + show, {
+            method: 'GET',
+            headers: {
+                Authorization: this.login.getAuthHeader()
+            }
+        })
+        .then(ret => ret.json())
+        .then(ret => ret as Show);
+    }
+
     searchShows(search: string) {
         const query = {
             search

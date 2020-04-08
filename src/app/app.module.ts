@@ -12,11 +12,13 @@ import { HomeComponent } from './home/home.component';
 import AuthGuard from './services/authguard';
 import { ShowCardComponent } from './show-card/show-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ShowComponent } from './show/show.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'show/:show', component: ShowComponent, canActivate: [AuthGuard] },
   { path: 'callback', component: CallbackComponent },
   { path: '**', 
     redirectTo: 'home',
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     CallbackComponent,
     HomeComponent,
     ShowCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,
