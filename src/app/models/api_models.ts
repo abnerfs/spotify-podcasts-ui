@@ -11,6 +11,8 @@ export type Podcast = {
     audio_preview_url:      string;
     description:            string;
     duration_ms:            number;
+    duration_formated:      string;
+    release_date_formated:  string;
     explicit:               boolean;
     external_urls:          ExternalUrls;
     href:                   string;

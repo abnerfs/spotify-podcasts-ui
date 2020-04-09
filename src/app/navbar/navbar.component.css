@@ -1,15 +1,17 @@
 .navbar {
-    background-color: #121212;
+    background-color: #040404;
 }
 
 .dropdown-item {
-    background-color: #121212;
+    background-color: #040404;
+
     color: white;
     font-weight: 600;
 }
 
 .dropdown-menu {
-    background-color: #121212;
+    background-color: #040404;
+
 }
 
 .navbar-brand {

@@ -34,7 +34,7 @@ export class ShowComponent implements OnInit {
   }
 
   searchEpisodes() {
-    if(this.searching || !this.search)
+    if(this.searching)
       return;
 
     this.searching = true;
@@ -42,7 +42,6 @@ export class ShowComponent implements OnInit {
     this.podcastsService.listEpisodes(this.showID, 0, this.search)
       .then(episodes => {
         this.episodes = episodes;
-        console.log(episodes);
       })
       .catch((err: Error) => {
           alert(err.message);
@@ -58,6 +57,7 @@ export class ShowComponent implements OnInit {
     this.podcastsService.getShow(this.showID)
       .then((show) => {
         this.show = show;
+        this.searchEpisodes();
       })
       .catch(err => {
         console.log(err);

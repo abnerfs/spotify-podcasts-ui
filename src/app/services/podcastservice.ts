@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Podcast, Show, AccessToken } from '../models/api_models';
 import { environment } from 'src/environments/environment';
-import { queryStringify } from './Util';
-import { getUser, saveUserLS } from './login';
+import { queryStringify, timeFromMs } from './Util';
+import { getUser, saveUserLS, getTokenRefresh } from './login';
 
 const { SERVER_LINK } = environment;
 
@@ -12,30 +12,29 @@ export type apiOptions = {
     method?: 'GET' | 'POST';
 }
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const formatDate = (date: Date) => {
+    const month = months[date.getMonth()];
+    const day = date.getDay();
+    const year = date.getFullYear();
+
+    let ret = `${month} ${day}, ${year}`
+    return ret;
+}
 
 export class ErrorAPI extends Error {
     status?: number;
 }
 
-const getTokenRefresh = (refresh_token: string) : Promise<AccessToken> => {
-    const body = {
-        refresh_token
-    }
 
-    return fetch(SERVER_LINK + '/refresh_token', {
-        method: 'POST',
-        body: queryStringify(body),
-        headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded'
-        }
-    })
-    .then(res => res.json())
-    .then(ret => ret as AccessToken)
+const checkValidDate = (date: Date) => {
+    return !isNaN(date.getTime());
 }
 
 const checkAuthExpired = async () => {
     let auth = await getUser();
-    if (new Date() >= auth.expire_date) {
+    if (new Date() >= auth.expire_date || !checkValidDate(auth.expire_date)) {
         auth = await getTokenRefresh(auth.refresh_token)
         saveUserLS(auth);
         return auth;
@@ -76,6 +75,12 @@ export const callAPI = async (path: string, options?: apiOptions) => {
 }
 
 
+const mapEpisode = (episode : Podcast) : Podcast => {
+    episode.duration_formated = timeFromMs(episode.duration_ms);
+    episode.release_date_formated = formatDate(new Date(episode.release_date));
+    return episode;
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -101,6 +106,8 @@ export class PodcastService {
         .then(ret => ret as Show[]);
     }
 
+    
+
     listEpisodes(show: string, offset: number, search?: string) {
         const query = {
             offset,
@@ -110,6 +117,7 @@ export class PodcastService {
         return callAPI(`/shows/${show}/episodes`, {
             query
         })
-        .then(ret => ret as Podcast[]);
+        .then(ret => ret as Podcast[])
+        .then(episodes => episodes.map(mapEpisode));
     }
 }

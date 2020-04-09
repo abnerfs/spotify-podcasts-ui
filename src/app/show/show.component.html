@@ -37,7 +37,16 @@
 
     <div class="container-episodes row" *ngIf="!searching && episodes?.length">
         <div class="offset-md-2 col-md-8">
-            <table class="table table-responsive table-episodes">
+            <div *ngFor="let episode of episodes" class="container-episode">
+                <div class="episode-duration-wrapper">
+                    <span class="episode-name">{{episode.name}}</span> 
+                    <span class="episode-duration">{{episode.duration_formated}}</span>
+                </div>
+                <div >
+                    <p class="episode-date">{{episode.release_date_formated}}</p>
+                </div>
+            </div>
+            <!-- <table class="table table-responsive table-episodes">
                 <thead>
                     <th class="episode-name">Name</th>
                     <th class="episode-date">Date</th>
@@ -51,7 +60,7 @@
                         <td>{{episode.duration_ms}}</td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 </div>

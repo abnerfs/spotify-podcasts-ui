@@ -25,6 +25,29 @@ export const getUser = () : AccessToken | undefined => {
     }
 }
 
+export const mapAccessToken = (json: any) : AccessToken => {
+    json.expire_date = new Date(json.expire_date);
+    let auth = json as AccessToken;
+    return auth;
+}
+
+export const getTokenRefresh = (refresh_token: string) : Promise<AccessToken> => {
+    const body = {
+        refresh_token
+    }
+
+    return fetch(SERVER_LINK + '/refresh_token', {
+        method: 'POST',
+        body: queryStringify(body),
+        headers: {
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+    })
+    .then(res => res.json())
+    .then(mapAccessToken);
+}
+
+
 
 
 export const isAuthenticated = () => {
@@ -85,7 +108,7 @@ export class LoginService {
 
             return ret;
         })
-        .then(ret => ret as AccessToken)
+        .then(mapAccessToken)
     }
 
     saveUserLS = (token: AccessToken) => saveUserLS(token);

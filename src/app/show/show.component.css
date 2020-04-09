@@ -1,5 +1,5 @@
 .container-show {
-    background-color: #040404;
+    background-color: #121212;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -71,14 +71,39 @@
     font-size: 20px;
 }
 
-.table-episodes .episode-name {
-    width: 70%;
+.container-episodes {
+    margin-top: 40px;
 }
 
-.table-episodes .episode-date {
-    width: 10%;
+.episode-name {
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    float: left;
 }
 
-.table-episodes .episode-duration {
-    width: 10%;
+.episode-duration {
+    color:white;
+    float: right;
+}
+
+.episode-date {
+    color:white;
+    font-size: 16px;
+    margin-top: 0px;
+    line-height: 10px;
+}
+
+.container-episode {
+    padding: 4px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.episode-duration-wrapper {
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
