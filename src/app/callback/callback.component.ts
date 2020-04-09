@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../services/login';
+import { LoginService, saveUserLS } from '../services/login';
+import { AccessToken } from '../models/api_models';
 
 @Component({
   selector: 'app-callback',
@@ -17,12 +18,10 @@ export class CallbackComponent implements OnInit {
   ngOnInit(): void {
 
     this.loading = true;
-
     const code = this.route.snapshot.queryParamMap.get('code');
     this.login.getToken(code)
-    .then(token => {
-      localStorage.clear();
-      localStorage.setItem('current_user', JSON.stringify(token));
+    .then((auth: AccessToken ) => {
+      saveUserLS(auth);
       this.router.navigate(['home']);
     })
     .catch((err : Error) => {

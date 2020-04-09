@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import UtilService from './services/Util';
 import { LoginService } from './services/login';
 import { RouterModule, Routes } from '@angular/router';
 import { CallbackComponent } from './callback/callback.component';
@@ -13,6 +12,7 @@ import AuthGuard from './services/authguard';
 import { ShowCardComponent } from './show-card/show-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShowComponent } from './show/show.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 const appRoutes: Routes = [
@@ -35,7 +35,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ShowCardComponent,
     NavbarComponent,
-    ShowComponent
+    ShowComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
       // { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [UtilService, LoginService],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

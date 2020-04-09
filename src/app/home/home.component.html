@@ -8,16 +8,17 @@
 
         <div class="row">
             <div class="col-md-9 wrapper-search-input">
-                <input type="text" [disabled]="loading" [(ngModel)]="search" class="form-control">
+                <input type="text" [disabled]="searching" (keydown)="onKey($event)" autofocus [(ngModel)]="search" class="form-control">
             </div>
             <div class="col-md-3">
-                <button class="btn btn-success button-search" [disabled]="loading" (click)="doSearch()">SEARCH</button>
+                <button class="btn btn-success button-search" [disabled]="searching" (click)="doSearch()">SEARCH</button>
             </div>
         </div>
-
     </div>
 
-    <div class="container-shows">
+    <app-loading *ngIf="searching"></app-loading>
+
+    <div class="container-shows" *ngIf="!searching">
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12 wrapper-show-card" *ngFor="let show of shows">
                 <app-show-card [show]="show"></app-show-card>

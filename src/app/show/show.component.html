@@ -1,7 +1,8 @@
 <div class="container-show">
     <app-navbar></app-navbar>
-    <div *ngIf="loading">
-        <h1 class="loading">Loading...</h1>
+
+    <div class="loading-wrapper" *ngIf="loading">
+        <app-loading ></app-loading>>
     </div>
 
     <div *ngIf="error">
@@ -20,11 +21,11 @@
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="row">
                 <div class="col-md-9 input-search-wrapper">
-                    <input [(ngModel)]="search" type="text" class="form-control search-episode"
+                    <input (keydown)="onKey($event)" [disabled]="searching" [(ngModel)]="search" type="text" class="form-control search-episode"
                         placeholder="Search episodes...">
                 </div>
                 <div class="col-md-3 btn-search-wrapper">
-                    <button (click)="searchEpisodes()" class="btn btn-success btn-search">SEARCH</button>
+                    <button (click)="searchEpisodes()" [disabled]="searching" class="btn btn-success btn-search">SEARCH</button>
                 </div>
             </div>
             <button (click)="spotifyDesktop()" class="btn btn-success btn-open-spotify">OPEN IN SPOTIFY DESKTOP</button>
@@ -32,7 +33,9 @@
         </div>
     </div>
 
-    <div class="container-episodes row" *ngIf="episodes?.length">
+    <app-loading *ngIf="searching"></app-loading>
+
+    <div class="container-episodes row" *ngIf="!searching && episodes?.length">
         <div class="offset-md-2 col-md-8">
             <table class="table table-responsive table-episodes">
                 <thead>

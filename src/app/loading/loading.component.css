@@ -1,0 +1,10 @@
+.loading-wrapper {
+    margin-top: 20px;
+}
+
+.loading-text {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Show, Podcast } from '../models/api_models';
 import { PodcastService } from '../services/podcastservice';
 import { Router, ActivatedRoute } from '@angular/router';
+import { timeoutPromise } from '../services/Util';
 
 @Component({
   selector: 'app-show',
@@ -15,6 +16,7 @@ export class ShowComponent implements OnInit {
   episodes: Podcast[] = [];
   loading: boolean = true;
   search: string;
+  searching: boolean = false;
 
   constructor(private podcastsService: PodcastService, private route: ActivatedRoute) { }
 
@@ -26,7 +28,17 @@ export class ShowComponent implements OnInit {
     window.open('https://play.spotify.com/show/' + this.showID, '_blank');
   }
 
+  onKey(event: KeyboardEvent) {
+    if(event.keyCode === 13)
+      this.searchEpisodes();
+  }
+
   searchEpisodes() {
+    if(this.searching || !this.search)
+      return;
+
+    this.searching = true;
+
     this.podcastsService.listEpisodes(this.showID, 0, this.search)
       .then(episodes => {
         this.episodes = episodes;
@@ -35,10 +47,14 @@ export class ShowComponent implements OnInit {
       .catch((err: Error) => {
           alert(err.message);
       })
+      .finally(() => {
+        this.searching = false;
+      })
   }
 
-  ngOnInit(): void {
-    this.showID = this.route.snapshot.paramMap.get('show');
+  async ngOnInit() {
+    this.showID = this.route.snapshot.paramMap.get('show');    
+
     this.podcastsService.getShow(this.showID)
       .then((show) => {
         this.show = show;
