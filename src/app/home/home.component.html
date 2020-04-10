@@ -21,6 +21,8 @@
         <div class="offset-md-3 col-md-6">
             <app-loading *ngIf="searching"></app-loading>
 
+            <h1 *ngIf="nodata" class="no-results">No results found :/</h1>
+
             <div class="container-shows" *ngIf="!searching">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12 wrapper-show-card" *ngFor="let show of shows">

@@ -8,8 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-success btn-open" (click)="openDesktop()">OPEN IN SPOTIFY DESKTOP</button>
-                <button type="button" class="btn btn-success btn-open" (click)="openApp()">OPEN IN APP/WEB</button>
+                <a type="button" class="btn btn-success btn-open" [href]="sanitize('spotify:' + link.type + ':' + link.id)" target="_blank">OPEN IN SPOTIFY DESKTOP</a>
+                <a type="button" class="btn btn-success btn-open" [href]="'https://play.spotify.com/' + link.type + '/' + link.id" target="_blank">OPEN IN APP/WEB</a>
             </div>
         </div>
     </div>

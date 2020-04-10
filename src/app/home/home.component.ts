@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   shows: Show[];
   loading: boolean;
   searching: boolean = false;
+  nodata: boolean = false;
 
   onKey(event: KeyboardEvent) {
     if(event.keyCode == 13) {
@@ -24,11 +25,14 @@ export class HomeComponent implements OnInit {
     if(!this.search || this.searching)
       return;
 
+    this.nodata = false;
     this.searching = true;
 
     this.podcastService.searchShows(this.search)
       .then(shows => {
         this.shows = shows || [];
+        if(this.shows.length == 0)
+          this.nodata = true;
       })
       .catch(err => {
         console.log(err);

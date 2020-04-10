@@ -41,3 +41,10 @@
         padding-left: 50px;
     }
 }
+
+.no-results {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+

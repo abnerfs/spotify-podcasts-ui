@@ -20,6 +20,7 @@ export class ShowComponent implements OnInit {
   search: string;
   searching: boolean = false;
   currentLink?: LinkSpotify;
+  nodata: boolean = false;
 
   constructor(private podcastsService: PodcastService, private route: ActivatedRoute) { }
 
@@ -45,11 +46,13 @@ export class ShowComponent implements OnInit {
     if(this.searching)
       return;
 
+    this.nodata = false;
     this.searching = true;
 
     this.podcastsService.listEpisodes(this.showID, 0, this.search)
       .then(episodes => {
         this.episodes = episodes;
+        this.nodata = this.episodes.length == 0;
       })
       .catch((err: Error) => {
           alert(err.message);
