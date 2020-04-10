@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Show, Podcast, LinkSpotify } from '../models/api_models';
 import { PodcastService } from '../services/podcastservice';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare const $ : any;
 
@@ -22,7 +22,7 @@ export class ShowComponent implements OnInit {
   currentLink?: LinkSpotify;
   nodata: boolean = false;
 
-  constructor(private podcastsService: PodcastService, private route: ActivatedRoute) { }
+  constructor(private podcastsService: PodcastService, private route: ActivatedRoute, private router: Router) { }
 
 
   openLink(type: 'show' | 'episode', id : string) {
@@ -46,6 +46,17 @@ export class ShowComponent implements OnInit {
     if(this.searching)
       return;
 
+    
+    this.router.navigate(
+      [], 
+      {
+        relativeTo: this.route,
+        queryParams: {
+          search: this.search
+        }, 
+        queryParamsHandling: 'merge',
+      });
+
     this.nodata = false;
     this.searching = true;
 
@@ -64,6 +75,7 @@ export class ShowComponent implements OnInit {
 
   async ngOnInit() {
     this.showID = this.route.snapshot.paramMap.get('show');    
+    this.search = this.route.snapshot.queryParams.search;
 
     this.podcastsService.getShow(this.showID)
       .then((show) => {

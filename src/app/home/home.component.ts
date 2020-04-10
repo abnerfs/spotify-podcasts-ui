@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PodcastService } from '../services/podcastservice';
 import { Show } from '../models/api_models';
+import { Params, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,16 @@ export class HomeComponent implements OnInit {
     if(!this.search || this.searching)
       return;
 
+    const queryParams: Params = { search: this.search };
+
+    this.router.navigate(
+      [], 
+      {
+        relativeTo: this.activatedRoute,
+        queryParams: queryParams, 
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
+
     this.nodata = false;
     this.searching = true;
 
@@ -42,9 +53,12 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  constructor(private podcastService: PodcastService) { }
+  constructor(private podcastService: PodcastService, private router: Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.search = this.activatedRoute.snapshot.queryParams.search;
+    if(this.search)
+      this.doSearch();
   }
 
 }
