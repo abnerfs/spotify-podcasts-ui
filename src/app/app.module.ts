@@ -13,6 +13,7 @@ import { ShowCardComponent } from './show-card/show-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShowComponent } from './show/show.component';
 import { LoadingComponent } from './loading/loading.component';
+import { OpenLinkComponent } from './open-link/open-link.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     ShowCardComponent,
     NavbarComponent,
     ShowComponent,
-    LoadingComponent
+    LoadingComponent,
+    OpenLinkComponent
   ],
   imports: [
     BrowserModule,

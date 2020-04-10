@@ -10,26 +10,25 @@
     </div>
 
     <div class="row show-container" *ngIf="show && !error && !loading">
-        <div class="col-md-4 img-wrapper col-sm-6 col-xs-12">
+    <div class="offset-md-2 col-md-2 img-wrapper col-sm-6 col-xs-12">
             <img class="img-show" [src]="show?.images[0]?.url" alt="">
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-12 titles-wrapper">
             <h2 class="show-name">{{show.name}}</h2>
             <p class="show-description">{{show.description}}</p>
         </div>
 
-        <div class="col-md-3 col-sm-12 col-xs-12">
-            <div class="row">
-                <div class="col-md-9 input-search-wrapper">
+        <div class="col-md-3 col-sm-12 col-xs-12 titles-wrapper">
+            <div class="row container-search">
+                <div class="col-md-7 input-search-wrapper">
                     <input (keydown)="onKey($event)" [disabled]="searching" [(ngModel)]="search" type="text" class="form-control search-episode"
                         placeholder="Search episodes...">
                 </div>
-                <div class="col-md-3 btn-search-wrapper">
-                    <button (click)="searchEpisodes()" [disabled]="searching" class="btn btn-success btn-search">SEARCH</button>
+                <div class="col-md-5  ">
+                    <button (click)="searchEpisodes()" [disabled]="searching" class="btn btn-success btn-open-spotify">SEARCH</button>
                 </div>
             </div>
-            <button (click)="spotifyDesktop()" class="btn btn-success btn-open-spotify">OPEN IN SPOTIFY DESKTOP</button>
-            <button (click)="spotifyApp()" class="btn btn-success btn-open-spotify">OPEN IN SPOTIFY WEB/APP</button>
+            <button (click)="openLink('show', showID)" class="btn btn-success btn-open-spotify">OPEN</button>
         </div>
     </div>
 
@@ -37,7 +36,7 @@
 
     <div class="container-episodes row" *ngIf="!searching && episodes?.length">
         <div class="offset-md-2 col-md-8">
-            <div *ngFor="let episode of episodes" class="container-episode">
+            <div *ngFor="let episode of episodes" class="container-episode" (click)="openLink('episode', episode.id)">
                 <div class="episode-duration-wrapper">
                     <span class="episode-name">{{episode.name}}</span> 
                     <span class="episode-duration">{{episode.duration_formated}}</span>
@@ -63,4 +62,6 @@
             </table> -->
         </div>
     </div>
+
+    <app-open-link [link]="currentLink"></app-open-link>
 </div>

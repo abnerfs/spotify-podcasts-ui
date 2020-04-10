@@ -18,10 +18,18 @@
 
 
 .img-show {
-    height: 300px;
-    width: 300px;
+    height: 270;
+    width: 270px;
     padding: 0px;
-    float: right;
+}
+
+.img-wrapper {
+    text-align: center;
+}
+
+.titles-wrapper {
+    padding-left: 40px;
+    padding-right: 40px
 }
 
 .show-name   {
@@ -44,14 +52,18 @@
     border-radius: 20px;
     width: 100%;
     font-weight: bold;
-    height: 50px;
-    margin-top: 20px;
+    margin-bottom: 15px;
 }
+
 
 .btn-search {
     font-weight: bold;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 20px;    
+}
+
+.search-episode {
+    margin-bottom: 15px;
 }
 
 .input-search-wrapper {
@@ -81,11 +93,13 @@
     font-weight: bold;
     margin-bottom: 0px;
     float: left;
+    width: 85%;
 }
 
 .episode-duration {
     color:white;
     float: right;
+    padding-right: 0px;
 }
 
 .episode-date {
@@ -97,8 +111,16 @@
 
 .container-episode {
     padding: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-bottom: 0px;
     margin-top: 0px;
+    cursor: pointer;
+    -webkit-filter: brightness(100%);
+}
+
+.container-episode:hover {
+    -webkit-filter: brightness(40%);
 }
 
 .episode-duration-wrapper {

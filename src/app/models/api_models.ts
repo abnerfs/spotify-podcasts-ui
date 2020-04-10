@@ -75,3 +75,8 @@ export type Followers = {
     href:  null;
     total: number;
 }
+
+export type LinkSpotify = {
+    type: 'show' | 'episode';
+    id: string;
+  }

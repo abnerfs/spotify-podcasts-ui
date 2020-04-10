@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Show, Podcast } from '../models/api_models';
+import { Show, Podcast, LinkSpotify } from '../models/api_models';
 import { PodcastService } from '../services/podcastservice';
 import { Router, ActivatedRoute } from '@angular/router';
 import { timeoutPromise } from '../services/Util';
+
+declare const $ : any;
+
 
 @Component({
   selector: 'app-show',
@@ -17,15 +20,21 @@ export class ShowComponent implements OnInit {
   loading: boolean = true;
   search: string;
   searching: boolean = false;
+  currentLink?: LinkSpotify;
 
   constructor(private podcastsService: PodcastService, private route: ActivatedRoute) { }
 
-  spotifyDesktop() {
-    window.open('spotify:show' + this.showID, '_blank');
-  }
 
-  spotifyApp() {
-    window.open('https://play.spotify.com/show/' + this.showID, '_blank');
+  openLink(type: 'show' | 'episode', id : string) {
+    this.currentLink = {
+      type, 
+      id
+    };
+
+    $('#modalLink').modal({
+      show: true,
+      backdrop: 'static',
+    })
   }
 
   onKey(event: KeyboardEvent) {
