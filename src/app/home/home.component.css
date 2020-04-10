@@ -18,8 +18,30 @@
     text-align: center;
     font-size: 50px;
     font-weight: bold;
-    margin-bottom: 20px;
 }
+
+.title-git {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    filter: brightness(100%);
+}
+
+.title-git:hover {
+    filter: brightness(60%);
+}
+
+.title-git a{
+    color: white;
+}
+
+.title-git a:hover{
+    text-decoration: none;
+}
+
+
 
 .search-input-wrapper {
     margin-bottom: 15px;

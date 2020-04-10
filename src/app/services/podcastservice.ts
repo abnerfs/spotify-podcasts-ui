@@ -23,10 +23,6 @@ const formatDate = (date: Date) => {
     return ret;
 }
 
-export class ErrorAPI extends Error {
-    status?: number;
-}
-
 
 const checkValidDate = (date: Date) => {
     return !isNaN(date.getTime());

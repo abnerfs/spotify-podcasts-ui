@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" *ngIf="link">
                 <a type="button" class="btn btn-success btn-open" [href]="sanitize('spotify:' + link.type + ':' + link.id)" target="_blank">OPEN IN SPOTIFY DESKTOP</a>
                 <a type="button" class="btn btn-success btn-open" [href]="'https://play.spotify.com/' + link.type + '/' + link.id" target="_blank">OPEN IN APP/WEB</a>
             </div>

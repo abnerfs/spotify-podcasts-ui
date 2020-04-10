@@ -1,4 +1,4 @@
-import { AccessToken } from '../models/api_models';
+import { AccessToken, ErrorAPI } from '../models/api_models';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { queryStringify } from './util';
@@ -25,6 +25,15 @@ export const getUser = () : AccessToken | undefined => {
     }
 }
 
+const checkError = (json: any) => {
+    if(json.error) {
+        let error = new Error(json.error.message || "Unexpected error") as ErrorAPI; 
+        error.status = json.error.status;
+        throw error;
+    }
+    return json;
+}
+
 export const mapAccessToken = (json: any) : AccessToken => {
     json.expire_date = new Date(json.expire_date);
     let auth = json as AccessToken;
@@ -44,6 +53,7 @@ export const getTokenRefresh = (refresh_token: string) : Promise<AccessToken> =>
         }
     })
     .then(res => res.json())
+    .then(checkError)
     .then(mapAccessToken);
 }
 
@@ -99,15 +109,7 @@ export class LoginService {
             }
         })
         .then(ret => ret.json())
-        .then(ret => {
-            if (!ret)
-                throw new Error("Authentication Failed");
-
-            if(ret.error) 
-                throw new Error(ret.error.message);
-
-            return ret;
-        })
+        .then(checkError)
         .then(mapAccessToken)
     }
 

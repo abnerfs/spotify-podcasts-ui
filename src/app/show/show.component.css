@@ -20,6 +20,13 @@
 .img-show {
     max-width: 100%;
     padding: 0px;
+    cursor: pointer;
+    filter: brightness(100%);
+}
+
+.img-show:hover {
+    filter: brightness(70%);
+    -webkit-filter: brightness(70%);
 }
 
 .img-wrapper {
@@ -37,6 +44,14 @@
     color: white;
     font-weight: bold;
     font-size: 30px;
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
+    cursor: pointer;
+}
+
+.show-name:hover {
+    filter: brightness(70%);
+    -webkit-filter: brightness(70%);
 }
 
 .show-description {
@@ -117,12 +132,15 @@
     margin-bottom: 0px;
     margin-top: 0px;
     cursor: pointer;
+    filter: brightness(100%);
     -webkit-filter: brightness(100%);
 }
 
 .container-episode:hover {
-    -webkit-filter: brightness(40%);
+    filter: brightness(70%);
+    -webkit-filter: brightness(70%);
 }
+
 
 .episode-duration-wrapper {
     display: inline-block;

@@ -25,16 +25,6 @@ export class OpenLinkComponent implements OnInit {
       this.close();
   }
 
-  openDesktop() {
-    window.open('spotify:' + this.link.type + ':' + this.link.id, '_blank');
-    this.close();
-  }
-
-  openApp() {
-    window.open('https://play.spotify.com/' + this.link.type + '/' + this.link.id, '_blank');
-    this.close();
-  }
-
   close() {
     $('#modalLink').modal('hide');
   }

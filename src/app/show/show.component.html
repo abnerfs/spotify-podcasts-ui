@@ -11,10 +11,10 @@
 
     <div class="row show-container" *ngIf="show && !error && !loading">
     <div class="offset-md-2 col-md-2 img-wrapper titles-wrapper col-sm-6 col-xs-12">
-            <img class="img-show" [src]="show?.images[0]?.url" alt="">
+            <img class="img-show" [src]="show?.images[0]?.url" (click)="openLink('show', showID)" [alt]="show.name + ' image'">
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 titles-wrapper">
-            <h2 class="show-name">{{show.name}}</h2>
+            <h2 class="show-name" (click)="openLink('show', showID)">{{show.name}}</h2>
             <p class="show-description">{{show.description}}</p>
         </div>
 
@@ -28,7 +28,6 @@
                     <button (click)="searchEpisodes()" [disabled]="searching" class="btn btn-success btn-open-spotify">SEARCH</button>
                 </div>
             </div>
-            <button (click)="openLink('show', showID)" class="btn btn-success btn-open-spotify">OPEN</button>
         </div>
     </div>
 
