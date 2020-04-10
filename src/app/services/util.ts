@@ -22,3 +22,13 @@ export const timeFromMs = (ms: number) => {
     return minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0');
 }
 
+export function paramsToObject(url: string) {
+    let entries = new URLSearchParams(url) as unknown as Iterable<any>;
+
+    let result = {}
+    for(let entry of entries) { // each 'entry' is a [key, value] tupple
+      const [key, value] = entry;
+      result[key] = value;
+    }
+    return result;
+  }

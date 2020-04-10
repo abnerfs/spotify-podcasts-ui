@@ -1,4 +1,4 @@
-import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { LoginService } from './login';
 
@@ -11,8 +11,8 @@ export default class AuthGuardService implements CanActivate {
 
     }
 
-    canActivate(route: ActivatedRouteSnapshot): boolean {
-        const isLogin = Boolean(route.routeConfig.path == 'login');
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        const isLogin = Boolean(route.routeConfig.path.startsWith('login'));
         const authenticated = this.login.isAuthenticated();
 
         if(isLogin && authenticated) {
@@ -21,7 +21,11 @@ export default class AuthGuardService implements CanActivate {
         }
 
         if(!isLogin && !authenticated) {
-            this.router.navigate(['login']);
+            this.router.navigate(['login'], {
+                queryParams: { 
+                    returnUrl: state.url
+                }
+            });
             return false;
         }
 

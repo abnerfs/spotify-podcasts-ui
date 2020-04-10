@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { LoginService } from '../services/login';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private login : LoginService) { }
+  constructor(private login : LoginService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -16,8 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   spotifyLogin(){ 
-      console.log('login');
-      this.login.spotifyLogin();
+      this.login.spotifyLogin(this.route.snapshot.queryParams.returnUrl);
   }
 
 }

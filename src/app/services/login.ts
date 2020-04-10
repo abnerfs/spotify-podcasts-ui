@@ -85,9 +85,10 @@ export class LoginService {
         localStorage.removeItem(USER_LS_ITEM);
     };
 
-    spotifyLogin() {
+    spotifyLogin(returnUrl: string) {
         const params = {
-            redirect_uri: REDIRECT_URI
+            redirect_uri: REDIRECT_URI,
+            returnUrl
         }
 
         window.location.href = SERVER_LINK + '/login?' + queryStringify(params);
