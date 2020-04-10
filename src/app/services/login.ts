@@ -1,7 +1,7 @@
 import { AccessToken } from '../models/api_models';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { queryStringify } from './Util';
+import { queryStringify } from './util';
 
 const { SERVER_LINK, REDIRECT_URI } = environment;
 const USER_LS_ITEM = 'current_user';

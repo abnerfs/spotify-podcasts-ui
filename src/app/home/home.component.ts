@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PodcastService } from '../services/podcastservice';
 import { Show } from '../models/api_models';
-import { timeoutPromise } from '../services/Util';
 
 @Component({
   selector: 'app-home',

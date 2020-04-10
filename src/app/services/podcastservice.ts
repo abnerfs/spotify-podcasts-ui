@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Podcast, Show, AccessToken } from '../models/api_models';
+import { Podcast, Show } from '../models/api_models';
 import { environment } from 'src/environments/environment';
-import { queryStringify, timeFromMs } from './Util';
+import { queryStringify, timeFromMs } from './util';
 import { getUser, saveUserLS, getTokenRefresh } from './login';
 
 const { SERVER_LINK } = environment;

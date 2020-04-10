@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Show, Podcast, LinkSpotify } from '../models/api_models';
 import { PodcastService } from '../services/podcastservice';
-import { Router, ActivatedRoute } from '@angular/router';
-import { timeoutPromise } from '../services/Util';
+import { ActivatedRoute } from '@angular/router';
 
 declare const $ : any;
 
