@@ -7,47 +7,37 @@
 }
 
 .container-search {
-    max-width: 600px;
     padding-top: 120px;
-    position: relative;
-    margin: auto;
-    width: 50%;
-}
-
-
-.container-shows {
-    padding-top: 20px;
-    margin: auto;
-    width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
 }
 
 .title-home {
     color: white;
-    font-weight: bold;
-    font-size: 60px;
-    margin-bottom: 10px;
-}
-
-.title-info-home{
-    color: white;
-    margin-bottom: 30px;
-}
-
-.title-container {
     text-align: center;
-}
-
-.button-search {
-    border-radius: 100px;
+    font-size: 50px;
     font-weight: bold;
-    width: 100%;
+    margin-bottom: 20px;
 }
 
-.wrapper-search-input {
-    margin-right: 0px;
-    padding-right: 0px;
+.search-input-wrapper {
+    margin-bottom: 15px;
+}
+
+.btn-search {
+    border-radius: 20px;
+    width: 100%;
+    font-weight: bold;
 }
 
 .wrapper-show-card {
     padding: 0px;
+}
+
+@media(max-width: 768px) {
+    .container-shows {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
 }
