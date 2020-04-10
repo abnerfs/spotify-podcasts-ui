@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SERVER_LINK: 'http://localhost:7788',
+  SERVER_LINK: 'http://abnerfs-spotify-api.herokuapp.com',
   REDIRECT_URI: 'http://localhost:4200/callback'
 };
 
