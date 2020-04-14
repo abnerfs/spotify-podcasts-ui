@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   async doSearch() {
-    if(!this.search || this.searching)
+    if(this.searching)
       return;
 
     const queryParams: Params = { search: this.search };
@@ -57,8 +57,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.search = this.activatedRoute.snapshot.queryParams.search;
-    if(this.search)
-      this.doSearch();
+    this.doSearch();
   }
 
 }
